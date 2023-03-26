@@ -55,7 +55,11 @@ $data = mysqli_fetch_array($query);
               <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                   <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle" src="../../assets/dist/img/user.png" alt="User profile picture">
+                    <?php if ($data['foto'] != null) { ?>
+                      <img class="profile-user-img img-fluid img-circle" src="../../uploads/<?= $data['foto'] ?>" alt="User profile picture">
+                    <?php } else {  ?>
+                      <img class="profile-user-img img-fluid img-circle" src="../../assets/dist/img/user.png" alt="User profile picture">
+                    <?php } ?>
                   </div>
 
                   <h3 class="profile-username text-center"><?= $data['nama_guru'] ?></h3>
@@ -92,6 +96,34 @@ $data = mysqli_fetch_array($query);
                     <input type="hidden" name="id_guru" value="<?= $data['id_guru'] ?>">
                     <input type="hidden" name="id_user" value="<?= $data['id_user'] ?>">
                     <div class="form-group row">
+                      <label for="InputNama" class="col-sm-3 col-form-label">Nama User<small>(nickname)</small></label>
+                      <div class="col-sm-9">
+                        <input type="text" id="InputNama" name="nama_user" placeholder="Masukkan Nickname" class="form-control" value="<?= $data['nama'] ?>" required />
+                      </div>
+                    </div>
+                    <div class="form-group row has-validation">
+                      <label for="InputEmail" class="col-sm-3 col-form-label">Email</label>
+                      <div class="col-sm-9">
+                        <?php
+                        if (isset($_GET['status_email'])) {
+                          if ($_GET['status_email'] == 'gagal') {
+                            $email_error = true;
+                          }
+                        } else {
+                          $email_error = false;
+                        }
+                        ?>
+                        <input type="email" id="InputEmail" name="email" placeholder="Masukkan Email" class="form-control <?= $email_error ? 'is-invalid' : '' ?>" value="<?= $data['email'] ?>" required />
+                        <?= $email_error ? '<div id="invalid_txt_username" class="invalid-feedback">Email Sudah Dipakai</div>' : '' ?>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="InputPassword" class="col-sm-3 col-form-label">Password<small>(isi jika ingin mengganti)</small></label>
+                      <div class="col-sm-9">
+                        <input type="password" id="InputPassword" name="password" placeholder="*****" minlength="5" class="form-control">
+                      </div>
+                    </div>
+                    <div class="form-group row">
                       <label for="InputNama" class="col-sm-3 col-form-label">Nama Lengkap</label>
                       <div class="col-sm-9">
                         <input type="text" id="InputNama" name="nama" placeholder="Masukkan Nama Lengkap" class="form-control" value="<?= $data['nama_guru'] ?>" required>
@@ -123,56 +155,7 @@ $data = mysqli_fetch_array($query);
                   </div>
               </div>
               </form>
-
-              <div class="card">
-                <form action="profile_proses.php" method="POST">
-                  <div class="card-header bg-primary">
-                    <h3 class="card-title">Ubah Email dan Password</h3>
-                  </div>
-                  <div class="card-body">
-                    <input type="hidden" name="id_guru" value="<?= $data['id_guru'] ?>">
-                    <input type="hidden" name="id_user" value="<?= $data['id_user'] ?>">
-                    <div class="form-group row">
-                      <label for="InputNama" class="col-sm-3 col-form-label">Nama User<small>(nickname)</small></label>
-                      <div class="col-sm-9">
-                        <input type="text" id="InputNama" name="nama_user" placeholder="Masukkan Nickname" class="form-control" value="<?= $data['nama'] ?>" required />
-                      </div>
-                    </div>
-                    <div class="form-group row has-validation">
-                      <label for="InputEmail" class="col-sm-3 col-form-label">Email</label>
-                      <div class="col-sm-9">
-                        <?php
-                        if (isset($_GET['status_email'])) {
-                          if ($_GET['status_email'] == 'gagal') {
-                            $email_error = true;
-                          }
-                        } else {
-                          $email_error = false;
-                        }
-                        ?>
-                        <input type="email" id="InputEmail" name="email" placeholder="Masukkan Email" class="form-control <?= $email_error ? 'is-invalid' : '' ?>" value="<?= $data['email'] ?>" required />
-                        <?= $email_error ? '<div id="invalid_txt_username" class="invalid-feedback">Email Sudah Dipakai</div>' : '' ?>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="InputPassword" class="col-sm-3 col-form-label">Password<small>(isi jika ingin mengganti)</small></label>
-                      <div class="col-sm-9">
-                        <input type="password" id="InputPassword" name="password" placeholder="*****" minlength="5" class="form-control">
-                      </div>
-                    </div>
-
-
-                  </div>
-                  <div class="card-footer text-right">
-                    <button type="submit" class="btn btn-primary" name="ubahuser">Ubah</button>
-                  </div>
-              </div>
-              </form>
             </div>
-
-
-
-
           </div>
         </div>
       </section>

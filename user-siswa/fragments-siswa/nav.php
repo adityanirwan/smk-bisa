@@ -45,13 +45,21 @@
 
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                <img src="../../assets/dist/img/user.png" class="user-image img-circle elevation-1" alt="User Image">
+                <?php if (isset($_SESSION['foto'])) { ?>
+                    <img src="../../uploads/<?= $_SESSION['foto'] ?>" class="user-image img-circle elevation-1" alt="User Image">
+                <?php } else { ?>
+                    <img src="../../assets/dist/img/user.png" class="user-image img-circle elevation-1" alt="User Image">
+                <?php } ?>
                 <span class="d-none d-md-inline"><?= ucwords($_SESSION['nama']) ?></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
                 <li class="user-header bg-primary">
-                    <img src="../../assets/dist/img/user.png" class="img-circle elevation-2" alt="User Image">
+                    <?php if (isset($_SESSION['foto'])) { ?>
+                        <img src="../../uploads/<?= $_SESSION['foto'] ?>" class="user-image img-circle elevation-1" alt="User Image">
+                    <?php } else { ?>
+                        <img src="../../assets/dist/img/user.png" class="user-image img-circle elevation-1" alt="User Image">
+                    <?php } ?>
 
                     <p><?= ucwords($_SESSION['nama']) ?></p>
                     <small class="badge badge-light"><?= $_SESSION['email'] ?></small>

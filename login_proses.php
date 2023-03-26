@@ -38,6 +38,9 @@ if ($cek > 0) {
 
         // cek jika user login sebagai guru
     } else if ($data['level'] == "guru") {
+        $q_guru = mysqli_query($koneksi, "select * from tb_guru where id_user = '$data[id_user]'");
+        $dataguru = mysqli_fetch_assoc($q_guru);
+
         //alert
         $_SESSION['alert'] = "title: 'Login Sukses',class: 'bg-success',
         body : 'Selamat Datang',delay :2000,autohide:true";
@@ -47,11 +50,17 @@ if ($cek > 0) {
         $_SESSION['nama'] = $data['nama'];
         $_SESSION['email'] = $data['email'];
         $_SESSION['level'] = "guru";
+        if ($dataguru['foto'] != null) {
+            $_SESSION['foto'] = $dataguru['foto'];
+        }
         // alihkan ke halaman dashboard guru
         header("location:user-guru/dashboard");
 
         // cek jika user login sebagai siswa
     } else if ($data['level'] == "siswa") {
+        $q_siswa = mysqli_query($koneksi, "select * from tb_siswa where id_user = '$data[id_user]'");
+        $datasiswa = mysqli_fetch_assoc($q_siswa);
+
         //alert
         $_SESSION['alert'] = "title: 'Login Sukses',class: 'bg-success',
         body : 'Selamat Datang',delay :2000,autohide:true";
@@ -61,6 +70,9 @@ if ($cek > 0) {
         $_SESSION['nama'] = $data['nama'];
         $_SESSION['email'] = $data['email'];
         $_SESSION['level'] = "siswa";
+        if ($datasiswa['foto'] != null) {
+            $_SESSION['foto'] = $datasiswa['foto'];
+        }
         // alihkan ke halaman dashboard siswa
         header("location:user-siswa/dashboard");
     } else {
