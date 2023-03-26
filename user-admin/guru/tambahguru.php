@@ -49,19 +49,13 @@ include('../../system/akses_admin.php');
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <form action="tambahguru_proses.php" method="POST">
+                            <form action="tambahguru_proses.php" method="POST" enctype="multipart/form-data">
                                 <div class="card">
                                     <div class="card-header bg-primary">
                                         <h4 class="card-title">Form Data Guru</h4>
                                         <!-- <h3 class="card-title">Judul</h3> -->
                                     </div>
                                     <div class="card-body">
-                                        <div class="form-group row">
-                                            <label for="InputNama" class="col-sm-3 col-form-label">Nama Lengkap</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" id="InputNama" name="nama" placeholder="Masukkan Nama Lengkap" class="form-control" required>
-                                            </div>
-                                        </div>
                                         <div class="form-group row">
                                             <label for="InputNama" class="col-sm-3 col-form-label">Nama User<small>(nickname)</small></label>
                                             <div class="col-sm-9">
@@ -91,6 +85,13 @@ include('../../system/akses_admin.php');
                                             </div>
                                         </div>
                                         <div class="form-group row">
+                                            <label for="InputNama" class="col-sm-3 col-form-label">Nama Lengkap</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="InputNama" name="nama" placeholder="Masukkan Nama Lengkap" class="form-control" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
                                             <label for="InputGender" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                             <div class="col-sm-3">
                                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -113,6 +114,12 @@ include('../../system/akses_admin.php');
                                             <label for="InputNohp" class="col-sm-3 col-form-label">Nomor HP</label>
                                             <div class="col-sm-9">
                                                 <input type="text" id="InputNohp" name="no_hp" placeholder="Nomor Hp WhatsApp" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="input-group row">
+                                            <label for="inputFoto" class="col-sm-3 col-form-label">Foto</label>
+                                            <div class="col-sm-9">
+                                                <input type="file" id="inputFoto" name="foto" placeholder="Foto Profile" class="file-input">
                                             </div>
                                         </div>
                                     </div>

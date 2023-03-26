@@ -59,6 +59,7 @@ include('../../system/akses_admin.php');
                                                 <th>Nama Lengkap</th>
                                                 <th>Jenis Kelamin</th>
                                                 <th>No Hp</th>
+                                                <th width="150px">Foto</th>
                                                 <th class="text-center">Aksi</th>
                                             </tr>
                                         </thead>
@@ -82,6 +83,12 @@ include('../../system/akses_admin.php');
                                                     <td><?= $data_guru['nama_guru'] ?></td>
                                                     <td><?= $data_guru['gender'] == 'L' ? 'Laki - Laki' : 'Perempuan' ?></td>
                                                     <td><?= $data_guru['no_hp'] ?></td>
+                                                    <td class="text-center"><?php if ($data_guru['foto'] != NULL) { ?>
+                                                            <img src="../../uploads/<?= $data_guru['foto'] ?>" alt="fotoguru" width="100px">
+                                                        <?php } else {
+                                                                                echo "-";
+                                                                            } ?>
+                                                    </td>
                                                     <td class="text-center">
                                                         <!-- <a href="detailguru.php?id_user=<?= $data_guru['id_user']; ?>" class="btn btn-success btn-sm mb-1">
                                                             <i class="fas fa-eye"></i>

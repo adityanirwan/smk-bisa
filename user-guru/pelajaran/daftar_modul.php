@@ -157,10 +157,12 @@ $kuis = false;
                   <div class="card-footer">
                     <a href="tambah_materi.php?idp=<?= $data_modul['id_pelajaran'] ?>&idmd=<?= $data_modul['id_modul'] ?>" class="btn btn-success">Tambah Materi</a>
                     <a href="edit_modul.php?idp=<?= $data_modul['id_pelajaran'] ?>&idmd=<?= $data_modul['id_modul'] ?>" class="btn btn-warning">Edit Modul</a>
-                    <?php if ($kuis == false) { ?>
-                      <a href="../kuis/tambah_kuis.php?idp=<?= $data_modul['id_pelajaran'] ?>&idmd=<?= $data_modul['id_modul'] ?>" class="btn btn-success">Tambah Kuis</a>
-                    <?php } ?>
+                    <!-- <?php if ($kuis == false) { ?> -->
+
+                    <!-- <?php } ?> -->
                     <a href="hasil_siswa.php?idp=<?= $data_modul['id_pelajaran'] ?>&idmd=<?= $data_modul['id_modul'] ?>" class="text-right btn btn-success">Lihat Hasil Siswa</a>
+
+                    <a href="../kuis/tambah_kuis.php?idp=<?= $data_modul['id_pelajaran'] ?>&idmd=<?= $data_modul['id_modul'] ?>" class="btn btn-success">Tambah Kuis</a>
                   </div>
                 </div>
               </div>

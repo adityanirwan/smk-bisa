@@ -49,7 +49,7 @@ include('../../system/akses_admin.php');
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
-              <form action="tambahsiswa_proses.php" method="POST">
+              <form action="tambahsiswa_proses.php" method="POST" enctype="multipart/form-data">
                 <div class="card">
                   <div class="card-header bg-primary">
                     <h4 class="card-title">Form Data Siswa</h4>
@@ -57,25 +57,9 @@ include('../../system/akses_admin.php');
                   </div>
                   <div class="card-body">
                     <div class="form-group row">
-                      <label for="InputNama" class="col-sm-3 col-form-label">Nama Lengkap</label>
+                      <label for="InputNamaUser" class="col-sm-3 col-form-label">Nama User<small>(nickname)</small></label>
                       <div class="col-sm-9">
-                        <input type="text" id="InputNama" name="nama" placeholder="Masukkan Nama Lengkap" class="form-control" required>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="InputNama" class="col-sm-3 col-form-label">Nama User<small>(nickname)</small></label>
-                      <div class="col-sm-9">
-                        <input type="text" id="InputNama" name="nama_user" placeholder="Masukkan Nickname" class="form-control" required>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="InputKelas" class="col-sm-3 col-form-label">Kelas</label>
-                      <div class="col-sm-9">
-                        <select name="kelas" id="InputKelas" class="custom-select rounded-0">
-                          <option value="X">X</option>
-                          <option value="XI">XI</option>
-                          <option value="XII">XII</option>
-                        </select>
+                        <input type="text" id="InputNamaUser" name="nama_user" placeholder="Masukkan Nickname" class="form-control" required>
                       </div>
                     </div>
                     <div class="form-group row has-validation">
@@ -100,6 +84,24 @@ include('../../system/akses_admin.php');
                         <input type="password" id="InputPassword" name="password" placeholder="*****" minlength="5" class="form-control" required>
                       </div>
                     </div>
+                    <div class="form-group row">
+                      <label for="InputNama" class="col-sm-3 col-form-label">Nama Lengkap</label>
+                      <div class="col-sm-9">
+                        <input type="text" id="InputNama" name="nama" placeholder="Masukkan Nama Lengkap" class="form-control" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="InputKelas" class="col-sm-3 col-form-label">Kelas</label>
+                      <div class="col-sm-9">
+                        <select name="kelas" id="InputKelas" class="custom-select rounded-0">
+                          <option value="X">X</option>
+                          <option value="XI">XI</option>
+                          <option value="XII">XII</option>
+                        </select>
+                      </div>
+                    </div>
+
                     <div class="form-group row">
                       <label for="InputGender" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                       <div class="col-sm-3">
@@ -131,6 +133,12 @@ include('../../system/akses_admin.php');
                         <input type="text" id="InputNohp" name="no_hp" placeholder="Nomor Hp WhatsApp" class="form-control">
                       </div>
                     </div>
+                    <div class="input-group row">
+                      <label for="inputFoto" class="col-sm-3 col-form-label">Foto</label>
+                      <div class="col-sm-9">
+                        <input type="file" id="inputFoto" name="foto" placeholder="Foto Profile" class="file-input">
+                      </div>
+                    </div>
                   </div>
                   <div class="card-footer">
                     <button type="submit" class="btn btn-primary" name="tambahsiswa">Tambah</button>
@@ -152,7 +160,7 @@ include('../../system/akses_admin.php');
   <!-- ./wrapper -->
 
   <!-- AdminLTE App -->
-  <script src="../assets/dist/js/adminlte.min.js"></script>
+  <script src="../../assets/dist/js/adminlte.min.js"></script>
   <!-- Alert -->
   <?php if (isset($_SESSION['alert'])) {
     if ($_SESSION['alert'] != null) {

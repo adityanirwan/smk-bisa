@@ -72,7 +72,6 @@ $_SESSION['idp'] = $id_pel;
                         <tr>
                           <th style="width: 10px">#</th>
                           <th>Materi</th>
-                          <th style="width: 40px">Aksi</th>
                         </tr>
                       </thead>
                       <?php
@@ -88,12 +87,10 @@ $_SESSION['idp'] = $id_pel;
                         while ($data_materi = mysqli_fetch_array($query2)) { ?>
                           <tr>
                             <td><?= $no++ ?></td>
-                            <td><?= $data_materi['judul_materi'] ?></td>
-                            <td class="text-center" width="150px">
-
+                            <td>
                               <?php if (!empty($data_materi['isi_materi'])) { ?>
-                                <a href="view_materi.php?idp=<?= $id_pel ?>&idmt=<?= $data_materi['id_materi'] ?>&idmd=<?= $data_materi['id_modul'] ?>" class="btn btn-success btn-sm mb-1">
-                                  <i class="fas fa-eye"></i>Pelajari
+                                <a href="view_materi.php?idp=<?= $id_pel ?>&idmt=<?= $data_materi['id_materi'] ?>&idmd=<?= $data_materi['id_modul'] ?>">
+                                  <?= $data_materi['judul_materi'] ?>
                                 </a>
                               <?php } ?>
                             </td>
@@ -109,7 +106,6 @@ $_SESSION['idp'] = $id_pel;
                         <tr>
                           <th style="width: 10px">#</th>
                           <th>Kuis</th>
-                          <th style="width: 40px">Aksi</th>
                         </tr>
                       </thead>
                       <?php
@@ -125,16 +121,10 @@ $_SESSION['idp'] = $id_pel;
                         while ($data_kuis = mysqli_fetch_array($query3)) { ?>
                           <tr>
                             <td><?= $no++ ?></td>
-                            <td><?= $data_kuis['judul'] ?></td>
-                            <td class="text-center" width="150px">
-                              <!-- <a href="view_kuis_utama.php?idp=<?= $id_pel ?>&idmd=<?= $data_modul['id_modul'] ?>" class="btn btn-success btn-sm mb-1">
-                                <i class="fas fa-eye"></i>test latihan
-                              </a> -->
-
-                              <a href="preview_kuis.php?idp=<?= $id_pel ?>&idmd=<?= $data_modul['id_modul'] ?>&idks=<?= $data_kuis['id_kuis'] ?>" class="btn btn-success btn-sm mb-1">
-                                <i class="fas fa-eye"></i>Latihan
+                            <td>
+                              <a href="preview_kuis.php?idp=<?= $id_pel ?>&idmd=<?= $data_modul['id_modul'] ?>&idks=<?= $data_kuis['id_kuis'] ?>">
+                                </i><?= $data_kuis['judul'] ?>
                               </a>
-
                             </td>
                           </tr>
                         <?php } ?>

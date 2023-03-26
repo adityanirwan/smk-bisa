@@ -29,9 +29,9 @@ $materi = mysqli_fetch_array($query_m);
             <a href="daftar_modul.php?idp=<?= $id_pel ?>" class="btn btn-warning btn-sm mb-2 ">Kembali</a>
           </div>
           <?php if ($last) { ?>
-            <div class="col-6 text-right">
+            <!-- <div class="col-6 text-right">
               <a href="proses_materi.php?idmd=<?= $id_modul ?>&idmt=<?= $id_materi ?>" class="btn btn-success btn-sm mb-2 ">Selesai</a>
-            </div>
+            </div> -->
           <?php } ?>
         </div>
         <div class="row mb-2">

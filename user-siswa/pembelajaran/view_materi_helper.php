@@ -24,21 +24,26 @@ while ($list_materi = mysqli_fetch_array($query)) {
 $next = "";
 $prev = "";
 $last = false;
-for ($i = 0; $i < count($urutan_materi); $i++) {
-  // cari posisi materi sekarang
-  if ($urutan_materi[$i] == $id_materi) {
-    // cek jika posisi saat ini adalah awal atau akhir array
-    if ($urutan_materi[$i] == $urutan_materi[0]) {
-      $prev = false;
-      $next = $urutan_materi[$i + 1];
-    } else if ($urutan_materi[$i] == $urutan_materi[count($urutan_materi) - 1]) {
-      $next = false;
-      $prev = $urutan_materi[$i - 1];
-      $last = true;
-    } else {
-      $next = $urutan_materi[$i + 1];
-      $prev = $urutan_materi[$i - 1];
-      $last = false;
+if (count($urutan_materi) == 1) {
+  $next = false;
+  $prev = false;
+} else {
+  for ($i = 0; $i < count($urutan_materi); $i++) {
+    // cari posisi materi sekarang
+    if ($urutan_materi[$i] == $id_materi) {
+      // cek jika posisi saat ini adalah awal atau akhir array
+      if ($urutan_materi[$i] == $urutan_materi[0]) {
+        $prev = false;
+        $next = $urutan_materi[$i + 1];
+      } else if ($urutan_materi[$i] == $urutan_materi[count($urutan_materi) - 1]) {
+        $next = false;
+        $prev = $urutan_materi[$i - 1];
+        $last = true;
+      } else {
+        $next = $urutan_materi[$i + 1];
+        $prev = $urutan_materi[$i - 1];
+        $last = false;
+      }
     }
   }
 }

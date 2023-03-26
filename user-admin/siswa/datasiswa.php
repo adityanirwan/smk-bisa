@@ -59,6 +59,7 @@ include('../../system/akses_admin.php');
                                                 <th>Kelas</th>
                                                 <th>Jenis Kelamin</th>
                                                 <th>No Hp</th>
+                                                <th widht="150px">Foto</th>
                                                 <th class="text-center">Aksi</th>
                                             </tr>
                                         </thead>
@@ -82,6 +83,14 @@ include('../../system/akses_admin.php');
                                                     <td><?= $data_siswa['kelas'] . " RPL" ?></td>
                                                     <td><?= $data_siswa['gender'] == 'L' ? 'Laki - Laki' : 'Perempuan' ?></td>
                                                     <td><?= $data_siswa['no_hp'] ?></td>
+                                                    <td class="text-center">
+                                                        <?php if ($data_siswa['foto'] != NULL) { ?>
+                                                            <img src="../../uploads/<?= $data_siswa['foto'] ?>" alt="fotosiswa" width="100px">
+                                                        <?php } else {
+                                                            echo "-";
+                                                        } ?>
+
+                                                    </td>
                                                     <td class="text-center">
                                                         <!-- <a href="" class="btn btn-success btn-sm mb-1">
                                                             <i class="fas fa-eye"></i>
