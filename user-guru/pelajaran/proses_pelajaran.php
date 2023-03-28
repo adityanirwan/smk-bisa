@@ -8,9 +8,10 @@ if (isset($_POST['tambahpel'])) {
   $uniq = generate();
   $nama = $_POST['nama'];
   $deskripsi = $_POST['desc'];
+  $id_user = $_POST['id_user'];
 
   // query tambah modul
-  $sql = "INSERT INTO tb_pelajaran(id_pelajaran,judul_pelajaran,desc_pelajaran) VALUES('$uniq','$nama','$deskripsi')";
+  $sql = "INSERT INTO tb_pelajaran(id_pelajaran,judul_pelajaran,desc_pelajaran,created_by) VALUES('$uniq','$nama','$deskripsi','$id_user')";
 
   // tambahkan ke tabel modul
   $query = mysqli_query($koneksi, $sql);
@@ -48,9 +49,16 @@ SET judul_pelajaran = '$nama',desc_pelajaran='$deskripsi' WHERE id_pelajaran = '
   // ambil id yg akan dihapus
   $id_pel = $_GET['hidp'];
 
+  // hapus materi
+  $sql = "DELETE FROM tb_materi WHERE id_pelajaran = '$id_pel'";
+  $query = mysqli_query($koneksi, $sql);
+  // hapus modul
+  $sql = "DELETE FROM tb_modul WHERE id_pelajaran = '$id_pel'";
+  $query = mysqli_query($koneksi, $sql);
+
+
   // sql delete
   $sql = "DELETE FROM tb_pelajaran WHERE id_pelajaran = '$id_pel'";
-
   // hapus data
   $query = mysqli_query($koneksi, $sql);
   if ($query) {
