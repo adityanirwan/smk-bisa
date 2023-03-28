@@ -11,7 +11,7 @@ $query_pel = mysqli_query($koneksi, $sql_pel);
 $pelajaran = mysqli_fetch_array($query_pel);
 
 // cari modul berdasarkan id
-$sql = "SELECT * FROM tb_modul WHERE id_pelajaran = '$id_pel'";
+$sql = "SELECT * FROM tb_modul WHERE id_pelajaran = '$id_pel' ORDER BY created_at ASC";
 $query = mysqli_query($koneksi, $sql);
 
 // cek apakah ada kuis
@@ -82,7 +82,7 @@ $kuis = false;
                         </tr>
                       </thead>
                       <?php
-                      $sql2 = "SELECT * FROM tb_materi WHERE id_modul = '$data_modul[id_modul]'";
+                      $sql2 = "SELECT * FROM tb_materi WHERE id_modul = '$data_modul[id_modul]' ORDER BY created_at ASC";
                       $query2 = mysqli_query($koneksi, $sql2);
                       $no = 1;
                       ?>
@@ -126,11 +126,6 @@ $kuis = false;
                       ?>
                       <tbody>
                         <?php while ($data_kuis = mysqli_fetch_array($query3)) {
-                          if (empty($data_kuis)) {
-                            $kuis = false;
-                          } else {
-                            $kuis = true;
-                          }
 
                         ?>
 
@@ -157,12 +152,15 @@ $kuis = false;
                   <div class="card-footer">
                     <a href="tambah_materi.php?idp=<?= $data_modul['id_pelajaran'] ?>&idmd=<?= $data_modul['id_modul'] ?>" class="btn btn-success">Tambah Materi</a>
                     <a href="edit_modul.php?idp=<?= $data_modul['id_pelajaran'] ?>&idmd=<?= $data_modul['id_modul'] ?>" class="btn btn-warning">Edit Modul</a>
-                    <!-- <?php if ($kuis == false) { ?> -->
 
-                    <!-- <?php } ?> -->
                     <a href="hasil_siswa.php?idp=<?= $data_modul['id_pelajaran'] ?>&idmd=<?= $data_modul['id_modul'] ?>" class="text-right btn btn-success">Lihat Hasil Siswa</a>
 
-                    <a href="../kuis/tambah_kuis.php?idp=<?= $data_modul['id_pelajaran'] ?>&idmd=<?= $data_modul['id_modul'] ?>" class="btn btn-success">Tambah Kuis</a>
+                    <?php
+                    $jmlkuis = mysqli_num_rows($query3);
+                    if ($jmlkuis <= 0) {
+                    ?>
+                      <a href="../kuis/tambah_kuis.php?idp=<?= $data_modul['id_pelajaran'] ?>&idmd=<?= $data_modul['id_modul'] ?>" class="btn btn-success">Tambah Kuis</a>
+                    <?php } ?>
                   </div>
                 </div>
               </div>

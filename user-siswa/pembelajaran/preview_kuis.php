@@ -16,7 +16,7 @@ $data_kuis = mysqli_fetch_array($query);
 
 // cari jawaban benar 
 // cari hanya jawaban benar
-$sql_nilai = "SELECT * FROM `tb_jawaban` JOIN tb_jawaban_tersimpan ON tb_jawaban.id_jawaban = tb_jawaban_tersimpan.id_jawaban WHERE  tb_jawaban_tersimpan.id_user='$id_user' AND tb_jawaban.benar = '1'";
+$sql_nilai = "SELECT * FROM `tb_jawaban` JOIN tb_jawaban_tersimpan ON tb_jawaban.id_jawaban = tb_jawaban_tersimpan.id_jawaban WHERE  tb_jawaban_tersimpan.id_user='$id_user' AND tb_jawaban.benar = '1' AND tb_jawaban_tersimpan.id_kuis = '$id_kuis'";
 $query_nilai = mysqli_query($koneksi, $sql_nilai);
 $jml_jawaban_benar = mysqli_num_rows($query_nilai);
 
@@ -104,7 +104,9 @@ $jml_pertanyaan = $rs_jml_pertanyaan['jumlah_pertanyaan'];
 
 
                   <!-- button mulai kuis -->
-                  <a href="view_kuis_utama.php?idp=<?= $id_pel ?>&idmd=<?= $id_md ?>" class="btn btn-primary">Mulai Kuis</a>
+                  <?php if ($jml_pertanyaan != 0) { ?>
+                    <a href="view_kuis_utama.php?idp=<?= $id_pel ?>&idmd=<?= $id_md ?>" class="btn btn-primary">Mulai Kuis</a>
+                  <?php } ?>
                 </div>
 
               </div>

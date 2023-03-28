@@ -94,6 +94,17 @@ if (isset($_GET['idp']) && isset($_GET['idmd'])) {
         // Summernote
         $('#summernote').summernote({
           height: 300, // set editor height
+          toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+            ['fontname', ['fontname']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ol', 'ul', 'paragraph', 'height']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture']],
+            ['view', ['undo', 'redo', 'fullscreen', 'help']]
+          ]
         })
       })
     </script>

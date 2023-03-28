@@ -66,7 +66,7 @@ include('../../system/akses_guru.php');
                       // menghubungkan php dengan koneksi database
                       include '../../system/koneksi.php';
 
-                      $sql = "SELECT * FROM tb_pelajaran WHERE created_by = '$_SESSION[id_user]'";
+                      $sql = "SELECT * FROM tb_pelajaran WHERE created_by = '$_SESSION[id_user]' ORDER BY created_at ASC";
                       $query = mysqli_query($koneksi, $sql);
                       $no = 1;
 

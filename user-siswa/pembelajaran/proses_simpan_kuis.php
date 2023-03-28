@@ -64,7 +64,7 @@ if (isset($_POST['simpankuis'])) {
     mysqli_next_result($koneksi);
     // proses hitung nilai
     // cari hanya jawaban benar
-    $sql_nilai = "SELECT * FROM `tb_jawaban` JOIN tb_jawaban_tersimpan ON tb_jawaban.id_jawaban = tb_jawaban_tersimpan.id_jawaban WHERE  tb_jawaban_tersimpan.id_user='$id_user' AND tb_jawaban.benar = '1'";
+    $sql_nilai = "SELECT * FROM `tb_jawaban` JOIN tb_jawaban_tersimpan ON tb_jawaban.id_jawaban = tb_jawaban_tersimpan.id_jawaban WHERE  tb_jawaban_tersimpan.id_user='$id_user' AND tb_jawaban.benar = '1' AND tb_jawaban_tersimpan.id_kuis = '$id_kuis'";
     $query_nilai = mysqli_query($koneksi, $sql_nilai);
     if ($query_nilai) {
       $sql_input_nilai = "";

@@ -3,5 +3,5 @@
 // ini adalah file yang akan menentukan nilai
 function hitungNilai($jmlbenar, $jmlsoal)
 {
-  return $jmlbenar / $jmlsoal * 100;
+  return ($jmlbenar / $jmlsoal) * 100;
 }

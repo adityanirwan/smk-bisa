@@ -11,6 +11,12 @@ if (isset($_GET['idg'])) {
   $data_guru = mysqli_fetch_array($query_guru);
   $id_user = $data_guru['id_user'];
 
+  // unlink foto jika ada
+  if ($data_guru['foto'] != null) {
+    // hapus foto sebelumnya
+    unlink('../../uploads/' . $data_guru['foto']);
+  }
+
   // delete tb user dulu
   $sql_deluser = "DELETE FROM tb_user WHERE id_user='$id_user'";
   $query_deluser = mysqli_query($koneksi, $sql_deluser);

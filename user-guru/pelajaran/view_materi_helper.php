@@ -14,7 +14,7 @@ if (isset($_GET['idmt']) && isset($_GET['idmd'])) {
   $id_modul = $_GET['idmd'];
   $id_pel = $_GET['idp'];
 }
-$sql_list_materi = "SELECT * FROM tb_materi WHERE id_modul = '$id_modul'";
+$sql_list_materi = "SELECT * FROM tb_materi WHERE id_modul = '$id_modul' ORDER BY created_at ASC";
 
 $urutan_materi = array();
 $query = mysqli_query($koneksi, $sql_list_materi);

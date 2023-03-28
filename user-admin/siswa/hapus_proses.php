@@ -12,6 +12,11 @@ if (isset($_GET['ids'])) {
   $data_siswa = mysqli_fetch_array($query_siswa);
   $id_user = $data_siswa['id_user'];
 
+  // unlink foto jika ada
+  if ($data_siswa['foto'] != null) {
+    // hapus foto sebelumnya
+    unlink('../../uploads/' . $data_siswa['foto']);
+  }
   // delete tb user dulu
   $sql_deluser = "DELETE FROM tb_user WHERE id_user='$id_user'";
   $query_deluser = mysqli_query($koneksi, $sql_deluser);

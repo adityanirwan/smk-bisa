@@ -109,27 +109,41 @@ else if (isset($_POST['tambahpertanyaan'])) {
 }
 
 // proses dari edit jawaban
-else if (isset($_POST['editjawaban'])) {
+else if (isset($_POST['editpertanyaan'])) {
+  $id_pel = $_POST['idp'];
   $id_ks = $_POST['idks'];
   $id_md = $_POST['idmd'];
   $id_pr = $_POST['idpr'];
   $soal = $_POST['soal'];
-  $jawaban1 = $_POST['jawaban1'];
-  $jawaban2 = $_POST['jawaban2'];
-  $jawaban3 = $_POST['jawaban3'];
-  $jawaban4 = $_POST['jawaban4'];
+  $jawaban0 = $_POST['jawaban1'];
+  $jawaban1 = $_POST['jawaban2'];
+  $jawaban2 = $_POST['jawaban3'];
+  $jawaban3 = $_POST['jawaban4'];
 
+  // update soal dulu
+  $sql = "UPDATE tb_pertanyaan SET isi_pertanyaan='$soal' WHERE id_pertanyaan='$id_pr'";
+  $query = mysqli_query($koneksi, $sql);
+
+  // update jawaban
+  // hapus dulu semua jawaban untuk pertanyaan ini
+  $sql = "DELETE FROM tb_jawaban WHERE id_pertanyaan='$id_pr'";
+  $query = mysqli_query($koneksi, $sql);
+
+  //untuk memasukan data ke jawaban
   for ($i = 0; $i < 4; $i++) {
-    // prepare
-    $sql = "UPDATE tb_jawaban SET jawaban_benar='$jawaban1',jawaban2='$jawaban2',jawaban3='$jawaban3',jawaban4='$jawaban4' WHERE id_kuis='$id_ks'";
-    // eksekusi
-    $query = mysqli_query($koneksi, $sql);
+    $uniq = generate();
+    $benar = $i == 0 ? 1 : 0;
+    $inp = ${"jawaban" . $i};
+    $sql2 = "INSERT INTO tb_jawaban(id_jawaban,id_pertanyaan,isi_jawaban,benar) VALUES('$uniq','$id_pr','$inp','$benar')";
+
+    $query2 = mysqli_query($koneksi, $sql2);
   }
-  if ($query) {
+
+  if ($query && $query2) {
     $_SESSION['alert'] = "title: 'Berhasil',class: 'bg-success',body : 'Data Berhasil Diubah',delay :2000,autohide:true";
-    header('location:daftar_pertanyaan.php?idmd=' . $id_md);
+    header('location: daftar_pertanyaan.php?idp=' . $id_pel . '&idks=' . $id_ks);
   } else {
     $_SESSION['alert'] = "title: 'Gagal',class: 'bg-danger',body : 'Data Gagal Diubah',delay :2000,autohide:true";
-    header('location:edit_jawabaan?idmd=' . $id_md . '&idks=' . $id_ks);
+    header('location:edit_pertanyaan.php?idpr=' . $id_pr . '&idp=' . $id_pel . '&idks=' . $id_ks);
   }
 }

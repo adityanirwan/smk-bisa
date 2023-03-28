@@ -42,7 +42,7 @@ $data = mysqli_fetch_array($query2);
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-12">
-              <h1>Edit Kuis Modul ?></h1>
+              <h1>Edit Kuis Modul</h1>
             </div>
           </div>
         </div>
@@ -101,6 +101,17 @@ $data = mysqli_fetch_array($query2);
         $('#desc').summernote({
           height: 300, // set editor height
           placeholder: 'Silahkan Tuliskan Kisi Kisi Yang akan keluar di Kuis',
+          toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+            ['fontname', ['fontname']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ol', 'ul', 'paragraph', 'height']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture']],
+            ['view', ['undo', 'redo', 'fullscreen', 'help']]
+          ]
         })
       })
     </script>

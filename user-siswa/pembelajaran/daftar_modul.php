@@ -6,12 +6,12 @@ if (isset($_GET['idp'])) {
   $id_pel = $_GET['idp'];
 }
 // cari nama pelajaran
-$sql_pel = "SELECT * FROM tb_pelajaran WHERE id_pelajaran = '$id_pel'";
+$sql_pel = "SELECT * FROM tb_pelajaran WHERE id_pelajaran = '$id_pel' ORDER BY created_at ASC";
 $query_pel = mysqli_query($koneksi, $sql_pel);
 $pelajaran = mysqli_fetch_array($query_pel);
 
 // cari modul berdasarkan id
-$sql = "SELECT * FROM tb_modul WHERE id_pelajaran = '$id_pel'";
+$sql = "SELECT * FROM tb_modul WHERE id_pelajaran = '$id_pel' ORDER BY created_at ASC";
 $query = mysqli_query($koneksi, $sql);
 
 $_SESSION['idp'] = $id_pel;
@@ -75,7 +75,7 @@ $_SESSION['idp'] = $id_pel;
                         </tr>
                       </thead>
                       <?php
-                      $sql2 = "SELECT * FROM tb_materi WHERE id_modul = '$data_modul[id_modul]'";
+                      $sql2 = "SELECT * FROM tb_materi WHERE id_modul = '$data_modul[id_modul]' ORDER BY created_at ASC";
                       $query2 = mysqli_query($koneksi, $sql2);
                       $no = 1;
                       ?>
@@ -120,7 +120,7 @@ $_SESSION['idp'] = $id_pel;
                         }
                         while ($data_kuis = mysqli_fetch_array($query3)) { ?>
                           <tr>
-                            <td><?= $no++ ?></td>
+                            <td><i class="nav-icon fa fa-circle-o"></i></td>
                             <td>
                               <a href="preview_kuis.php?idp=<?= $id_pel ?>&idmd=<?= $data_modul['id_modul'] ?>&idks=<?= $data_kuis['id_kuis'] ?>">
                                 </i><?= $data_kuis['judul'] ?>

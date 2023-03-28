@@ -14,7 +14,7 @@ $_SESSION['idp'] = $id_pel;
 // membaca data di database
 // menghubungkan php dengan koneksi database
 
-$sql = "SELECT * FROM tb_pertanyaan JOIN tb_kuis ON tb_kuis.id_kuis = tb_pertanyaan.id_kuis WHERE tb_pertanyaan.id_kuis='$id_ks'";
+$sql = "SELECT * FROM tb_pertanyaan JOIN tb_kuis ON tb_kuis.id_kuis = tb_pertanyaan.id_kuis WHERE tb_pertanyaan.id_kuis='$id_ks' ORDER BY created_at ASC";
 $query = mysqli_query($koneksi, $sql);
 
 ?>
@@ -94,13 +94,13 @@ $query = mysqli_query($koneksi, $sql);
                           <td>
                             <?php while ($row = mysqli_fetch_array($query2)) {
                             ?>
-                              <?= $row['isi_jawaban'] ?>,
+                              <?= $row['isi_jawaban'] ?>
                             <?php } ?>
                           </td>
                           <td class="text-center">
-                            <!-- <a href="edit_pertanyaan.php?idpr=<?= $data['id_pertanyaan'] ?>&idks=<?= $data['id_kuis'] ?>" class="btn btn-warning btn-sm mb-1">
-                              <i class="fas fa-pen"></i>Edit
-                            </a> -->
+                            <a href="edit_pertanyaan.php?idpr=<?= $data['id_pertanyaan'] ?>&idp=<?= $id_pel ?>&idks=<?= $data['id_kuis'] ?>" class="btn btn-warning btn-sm mb-1">
+                              <i class="fas fa-pen"></i>
+                            </a>
                             <a href="hapus_pertanyaan.php?hidks=<?= $data['id_kuis'] ?>&idp=<?= $id_pel ?>&hidpr=<?= $data['id_pertanyaan'] ?>" class="btn btn-danger btn-sm mb-1" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini');">
                               <i class="fas fa-trash"></i>
                             </a>

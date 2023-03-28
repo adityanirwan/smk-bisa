@@ -91,7 +91,7 @@ $data_soal = mysqli_fetch_array($query);
 
                   </div>
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" name="editjawaban">Edit</button>
+                    <button type="submit" class="btn btn-primary" name="editpertanyaan">Edit</button>
                   </div>
                 </div>
               </form>

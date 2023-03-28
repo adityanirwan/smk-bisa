@@ -50,12 +50,13 @@ include('../../system/akses_guru.php'); ?>
       <div class="card card-primary col-12">
         <!-- form start -->
         <form action="proses_pelajaran.php" method="POST">
+          <input type="hidden" name="id_user" value="<?= $_SESSION['id_user'] ?>">
           <div class="card-header">
             <a href="daftar_pelajaran.php" class="btn btn-warning btn-sm mb-3 mt-2">Kembali</a>
           </div>
           <div class=" card-body">
             <div class="form-group">
-              <label for="InputNama">Nama Modul</label>
+              <label for="InputNama">Nama Pelajaran</label>
               <input type="text" class="form-control" id="InputNama" name="nama" placeholder="Masukkan Nama" required>
             </div>
             <div class="form-group">
